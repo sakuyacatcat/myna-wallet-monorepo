@@ -182,10 +182,12 @@ async function main() {
     return
 }
 
-main().catch(err => {
-    console.error(err)
-    process.exit(1)
-})
+if (require.main === module) {
+    main().catch(err => {
+        console.error(err)
+        process.exit(1)
+    })
+}
 
 // Helper functions
 function createInitCode(identityCommitment: Hex, salt: bigint): Hex {
@@ -372,3 +374,5 @@ async function verifyZKProof(callData: string): Promise<boolean> {
         return false
     }
 }
+
+export { createInitCode, generateDummyZKPSignature }
