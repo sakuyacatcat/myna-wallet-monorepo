@@ -1,7 +1,9 @@
-import { ethers } from 'ethers'
-import { join } from 'path'
-import NodeRSA from 'node-rsa'
+import dotenv from 'dotenv'
 import { sha256 } from 'ethers'
+import NodeRSA from 'node-rsa'
+import { join } from 'path'
+import { UserOperation, bundlerActions, getSenderAddress, getUserOperationHash } from 'permissionless'
+import { GetUserOperationGasPriceReturnType, pimlicoBundlerActions } from 'permissionless/actions/pimlico'
 import { groth16 } from 'snarkjs'
 import {
     Address,
@@ -9,22 +11,19 @@ import {
     concat,
     createClient,
     createPublicClient,
+    encodeAbiParameters,
     encodeFunctionData,
-    http,
-    parseEther,
     getContract,
-    encodeAbiParameters
+    http,
+    parseEther
 } from 'viem'
+import { PartialBy } from 'viem/_types/types/utils'
 import { privateKeyToAccount } from 'viem/accounts'
 import { polygonMumbai } from 'viem/chains'
-import { UserOperation, bundlerActions, getSenderAddress, getUserOperationHash } from 'permissionless'
-import { GetUserOperationGasPriceReturnType, pimlicoBundlerActions } from 'permissionless/actions/pimlico'
-import dotenv from 'dotenv'
-import { abi as factoryABI } from '../../../packages/contracts/build/ZKMynaWalletFactory.sol/ZKMynaWalletFactory.json'
-import { abi as walletABI } from '../../../packages/contracts/build/ZKMynaWallet.sol/ZKMynaWallet.json'
 import { abi as paymasterABI } from '../../../packages/contracts/build/MynaWalletPaymaster.sol/MynaWalletPaymaster.json'
+import { abi as walletABI } from '../../../packages/contracts/build/ZKMynaWallet.sol/ZKMynaWallet.json'
+import { abi as factoryABI } from '../../../packages/contracts/build/ZKMynaWalletFactory.sol/ZKMynaWalletFactory.json'
 import { abi as verifierABI } from '../../../packages/contracts/build/verifier.sol/MynaWalletVerifier.json'
-import { PartialBy } from 'viem/_types/types/utils'
 
 // Load environment variables
 dotenv.config({ path: join(__dirname, '/../../../.env') })
