@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "target": "ES2020",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "lib": [
+      "es2020"
+    ],
+    "rootDir": "../",
+    "baseUrl": "./",
+    "outDir": "./build",
+    "typeRoots": [
+      "./node_modules/@types",
+      "../../node_modules/@types"
+    ],
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "../../node_modules/*"
+      ],
+    }
+  },
+  "include": [
+    "ts/**/*.ts",
+    "test/**/*.ts",
+    "../contracts/build/**/*.json"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
