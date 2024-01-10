@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
+    "build:watch": "tsc -w",
     "clean": "rimraf node_modules coverage build",
     "test": "TZ=UTC jest",
     "test:coverage": "TZ=UTC jest --coverage",
