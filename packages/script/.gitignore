@@ -8,5 +8,6 @@ coverage/
 node_modules/
 
 *.tsbuildinfo
-ts/*.js
+ts/**/*.js
+test/**/*.js
 *.d.ts
